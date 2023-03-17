@@ -2,6 +2,7 @@ package br.com.marcosceola.api.controller;
 
 import br.com.marcosceola.api.dto.DadosListagemMedico;
 import br.com.marcosceola.api.dto.MedicoForm;
+import br.com.marcosceola.api.dto.MedicoUpdateForm;
 import br.com.marcosceola.api.model.Medico;
 import br.com.marcosceola.api.service.MedicoService;
 import jakarta.validation.Valid;
@@ -33,5 +34,17 @@ public class MedicoController {
                 .map(DadosListagemMedico::new);
 
         return ResponseEntity.ok(medicosForm);
+    }
+
+    @DeleteMapping
+    @Transactional
+    public void delete(@RequestParam Long id) {
+        medicoService.delete(id);
+    }
+
+    @PutMapping
+    @Transactional
+    public void update(@Valid @RequestBody MedicoUpdateForm medicoUpdateForm) {
+        medicoService.update(medicoUpdateForm);
     }
 }
