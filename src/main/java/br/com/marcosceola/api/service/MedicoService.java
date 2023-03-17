@@ -1,5 +1,6 @@
 package br.com.marcosceola.api.service;
 
+import br.com.marcosceola.api.dto.EnderecoUpdateForm;
 import br.com.marcosceola.api.dto.MedicoUpdateForm;
 import br.com.marcosceola.api.exception.ApiException;
 import br.com.marcosceola.api.model.Endereco;
@@ -38,10 +39,46 @@ public class MedicoService {
     public void update(MedicoUpdateForm medicoUpdateForm) {
         var medico = this.find(medicoUpdateForm.id());
 
-        medico.setNome(medicoUpdateForm.nome());
-        medico.setTelefone(medico.getTelefone());
-        medico.setEndereco(new Endereco(medicoUpdateForm.endereco()));
+        if (medicoUpdateForm.nome() != null) {
+            medico.setNome(medicoUpdateForm.nome());
+        }
 
-        repository.save(medico);
+        if (medicoUpdateForm.telefone() != null) {
+            medico.setTelefone(medico.getTelefone());
+        }
+
+        if (medicoUpdateForm.endereco() != null) {
+            atualizarEndereco(medico.getEndereco(), medicoUpdateForm.endereco());
+        }
+    }
+
+    private void atualizarEndereco(Endereco endereco, EnderecoUpdateForm enderecoUpdateForm) {
+        if (enderecoUpdateForm.logradouro() != null) {
+            endereco.setLogradouro(enderecoUpdateForm.logradouro());
+        }
+
+        if (enderecoUpdateForm.numero() != null) {
+            endereco.setNumero(enderecoUpdateForm.numero());
+        }
+
+        if (enderecoUpdateForm.complemento() != null) {
+            endereco.setComplemento(enderecoUpdateForm.complemento());
+        }
+
+        if (enderecoUpdateForm.bairro() != null) {
+            endereco.setBairro(enderecoUpdateForm.bairro());
+        }
+
+        if (enderecoUpdateForm.cidade() != null) {
+            endereco.setCidade(enderecoUpdateForm.cidade());
+        }
+
+        if (enderecoUpdateForm.uf() != null) {
+            endereco.setUf(enderecoUpdateForm.uf());
+        }
+
+        if (enderecoUpdateForm.cep() != null) {
+            endereco.setCep(enderecoUpdateForm.cep());
+        }
     }
 }
