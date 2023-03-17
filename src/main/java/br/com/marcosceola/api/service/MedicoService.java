@@ -3,10 +3,9 @@ package br.com.marcosceola.api.service;
 import br.com.marcosceola.api.model.Medico;
 import br.com.marcosceola.api.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class MedicoService {
@@ -18,7 +17,7 @@ public class MedicoService {
         repository.save(medico);
     }
 
-    public List<Medico> listAll() {
-        return repository.findAll();
+    public Page<Medico> listAll(Pageable paginacao) {
+        return repository.findAll(paginacao);
     }
 }

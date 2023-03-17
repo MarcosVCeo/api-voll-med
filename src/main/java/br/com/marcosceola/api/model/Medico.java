@@ -1,5 +1,6 @@
 package br.com.marcosceola.api.model;
 
+import br.com.marcosceola.api.dto.MedicoForm;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,4 +27,13 @@ public class Medico {
 
     @Embedded
     private Endereco endereco;
+
+    public Medico(MedicoForm medicoForm) {
+        this.nome = medicoForm.nome();
+        this.email = medicoForm.email();
+        this.telefone = medicoForm.telefone();
+        this.crm = medicoForm.crm();
+        this.especialidade = medicoForm.especialidade();
+        this.endereco = new Endereco(medicoForm.endereco());
+    }
 }
