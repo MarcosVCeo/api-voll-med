@@ -52,6 +52,7 @@ public class MedicoController {
                 null,
                 medicoForm.nome(),
                 medicoForm.email(),
+                medicoForm.telefone(),
                 medicoForm.crm(),
                 medicoForm.especialidade(),
                 endereco);
@@ -74,6 +75,7 @@ public class MedicoController {
                 medico.getNome(),
                 medico.getEmail(),
                 medico.getCrm(),
+                medico.getTelefone(),
                 medico.getEspecialidade(),
                 enderecoForm);
 
