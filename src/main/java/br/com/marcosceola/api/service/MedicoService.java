@@ -22,7 +22,7 @@ public class MedicoService {
     }
 
     public Page<Medico> listAll(Pageable paginacao) {
-        return repository.findAll(paginacao);
+        return repository.findAllByAtivoTrue(paginacao);
     }
 
     public Medico find(Long id) {
