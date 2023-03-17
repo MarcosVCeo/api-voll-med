@@ -33,7 +33,7 @@ public class MedicoService {
 
     public void delete(Long id) {
         var medico = this.find(id);
-        repository.delete(medico);
+        medico.desativar();
     }
 
     public void update(MedicoUpdateForm medicoUpdateForm) {

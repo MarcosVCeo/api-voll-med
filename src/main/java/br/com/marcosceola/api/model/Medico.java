@@ -30,6 +30,8 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
+    private Boolean ativo;
+
     public Medico(MedicoForm medicoForm) {
         this.nome = medicoForm.nome();
         this.email = medicoForm.email();
@@ -37,5 +39,10 @@ public class Medico {
         this.crm = medicoForm.crm();
         this.especialidade = medicoForm.especialidade();
         this.endereco = new Endereco(medicoForm.endereco());
+        this.ativo = true;
+    }
+
+    public void desativar() {
+        this.ativo = false;
     }
 }

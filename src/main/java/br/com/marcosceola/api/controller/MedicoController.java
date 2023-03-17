@@ -36,9 +36,9 @@ public class MedicoController {
         return ResponseEntity.ok(medicosForm);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @Transactional
-    public void delete(@RequestParam Long id) {
+    public void delete(@PathVariable Long id) {
         medicoService.delete(id);
     }
 
