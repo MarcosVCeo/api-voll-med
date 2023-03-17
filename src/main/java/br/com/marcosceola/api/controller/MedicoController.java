@@ -4,6 +4,7 @@ import br.com.marcosceola.api.dto.MedicoForm;
 import br.com.marcosceola.api.model.Endereco;
 import br.com.marcosceola.api.model.Medico;
 import br.com.marcosceola.api.service.MedicoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class MedicoController {
     private MedicoService medicoService;
 
     @PostMapping
-    public void cadastrar(@RequestBody MedicoForm medicoForm) {
+    public void cadastrar(@Valid @RequestBody MedicoForm medicoForm) {
         medicoService.save(medicoForm2Medico(medicoForm));
     }
 
