@@ -35,7 +35,13 @@ public class PacienteService {
     }
 
     public void delete(Long id) {
-       var paciente = find(id);
-       paciente.desativar();
+        var paciente = find(id);
+        paciente.desativar();
+    }
+
+    public Paciente findAtivo(Long id) {
+        return pacienteRepository
+                .findByIdAndAndAtivoTrue(id)
+                .orElseThrow(() -> new ApiException(String.format("Não foi possível encontrar um paciente com o id: '%d'", id)));
     }
 }

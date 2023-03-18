@@ -29,6 +29,12 @@ public class MedicoService {
                 .orElseThrow(() -> new ApiException(String.format("Não foi possível encontrar um médico com id:'%d'.", id)));
     }
 
+    public Medico findAtivo(Long id) {
+        return repository
+                .findByIdAndAndAtivoTrue(id)
+                .orElseThrow(() -> new ApiException(String.format("Não foi possível encontrar um médico com id:'%d'.", id)));
+    }
+
     public void delete(Long id) {
         var medico = this.find(id);
         medico.desativar();
