@@ -1,5 +1,6 @@
-package br.com.marcosceola.api.dto;
+package br.com.marcosceola.api.dto.medico;
 
+import br.com.marcosceola.api.dto.EnderecoUpdateForm;
 import jakarta.validation.constraints.NotNull;
 
 public record MedicoUpdateForm(

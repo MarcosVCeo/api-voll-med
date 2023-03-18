@@ -1,10 +1,10 @@
 package br.com.marcosceola.api.service;
 
 import br.com.marcosceola.api.dto.EnderecoUpdateForm;
-import br.com.marcosceola.api.dto.MedicoUpdateForm;
+import br.com.marcosceola.api.dto.medico.MedicoUpdateForm;
 import br.com.marcosceola.api.exception.ApiException;
 import br.com.marcosceola.api.model.Endereco;
-import br.com.marcosceola.api.model.Medico;
+import br.com.marcosceola.api.model.medico.Medico;
 import br.com.marcosceola.api.repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

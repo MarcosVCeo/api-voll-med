@@ -1,4 +1,4 @@
-package br.com.marcosceola.api.model;
+package br.com.marcosceola.api.model.medico;
 
 public enum Especialidade {
     ORTOPEDIA,

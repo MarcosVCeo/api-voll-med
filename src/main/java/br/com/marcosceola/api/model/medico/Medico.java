@@ -1,6 +1,7 @@
-package br.com.marcosceola.api.model;
+package br.com.marcosceola.api.model.medico;
 
-import br.com.marcosceola.api.dto.MedicoForm;
+import br.com.marcosceola.api.dto.medico.MedicoForm;
+import br.com.marcosceola.api.model.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
-package br.com.marcosceola.api.dto;
+package br.com.marcosceola.api.dto.medico;
 
-import br.com.marcosceola.api.model.Especialidade;
-import br.com.marcosceola.api.model.Medico;
+import br.com.marcosceola.api.model.medico.Especialidade;
+import br.com.marcosceola.api.model.medico.Medico;
 
 public record DadosListagemMedico(
         Long id,
