@@ -41,4 +41,10 @@ public class PacienteController {
     public void update(@Valid @RequestBody PacienteUpdateForm pacienteUpdateForm) {
         pacienteService.update(pacienteUpdateForm);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id) {
+        pacienteService.delete(id);
+    }
 }

@@ -33,4 +33,9 @@ public class PacienteService {
         var paciente = find(pacienteUpdateForm.id());
         paciente.atualizarInformacoes(pacienteUpdateForm);
     }
+
+    public void delete(Long id) {
+       var paciente = find(id);
+       paciente.desativar();
+    }
 }

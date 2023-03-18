@@ -65,4 +65,8 @@ public class Paciente {
             this.endereco.atualizarInformacoes(pacienteUpdateForm.endereco());
         }
     }
+
+    public void desativar() {
+        this.ativo = false;
+    }
 }
