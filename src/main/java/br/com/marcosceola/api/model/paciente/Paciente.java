@@ -31,6 +31,8 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
 
+    private Boolean ativo;
+
     public Paciente(PacienteForm pacienteForm) {
         var enderecoForm = pacienteForm.endereco();
         var endereco = new Endereco(
@@ -47,5 +49,6 @@ public class Paciente {
         this.telefone = pacienteForm.telefone();
         this.cpf = pacienteForm.cpf();
         this.endereco = endereco;
+        this.ativo = true;
     }
 }

@@ -3,6 +3,8 @@ package br.com.marcosceola.api.service;
 import br.com.marcosceola.api.model.paciente.Paciente;
 import br.com.marcosceola.api.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,5 +15,9 @@ public class PacienteService {
 
     public void save(Paciente paciente) {
         pacienteRepository.save(paciente);
+    }
+
+    public Page<Paciente> listAll(Pageable paginacao) {
+        return pacienteRepository.findAllByAtivoTrue(paginacao);
     }
 }
