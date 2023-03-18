@@ -1,17 +1,16 @@
 package br.com.marcosceola.api.model.paciente;
 
 import br.com.marcosceola.api.dto.paciente.PacienteForm;
+import br.com.marcosceola.api.dto.paciente.PacienteUpdateForm;
 import br.com.marcosceola.api.model.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity(name = "paciente")
 @Table(name = "pacientes")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Paciente {
@@ -50,5 +49,20 @@ public class Paciente {
         this.cpf = pacienteForm.cpf();
         this.endereco = endereco;
         this.ativo = true;
+    }
+
+    public void atualizarInformacoes(PacienteUpdateForm pacienteUpdateForm) {
+
+        if (pacienteUpdateForm.nome() != null) {
+            this.nome = pacienteUpdateForm.nome();
+        }
+
+        if (pacienteUpdateForm.telefone() != null) {
+            this.telefone = pacienteUpdateForm.telefone();
+        }
+
+        if (pacienteUpdateForm.endereco() != null) {
+            this.endereco.atualizarInformacoes(pacienteUpdateForm.endereco());
+        }
     }
 }

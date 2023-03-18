@@ -1,17 +1,16 @@
 package br.com.marcosceola.api.model.medico;
 
 import br.com.marcosceola.api.dto.medico.MedicoForm;
+import br.com.marcosceola.api.dto.medico.MedicoUpdateForm;
 import br.com.marcosceola.api.model.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity(name = "medico")
 @Table(name = "medicos")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Medico {
@@ -45,5 +44,20 @@ public class Medico {
 
     public void desativar() {
         this.ativo = false;
+    }
+
+    public void atualizarInformacoes(MedicoUpdateForm medicoUpdateForm) {
+
+        if (medicoUpdateForm.nome() != null) {
+            this.nome = medicoUpdateForm.nome();
+        }
+
+        if (medicoUpdateForm.telefone() != null) {
+            this.telefone = medicoUpdateForm.telefone();
+        }
+
+        if (medicoUpdateForm.endereco() != null) {
+            this.endereco.atualizarInformacoes(medicoUpdateForm.endereco());
+        }
     }
 }

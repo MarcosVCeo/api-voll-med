@@ -2,6 +2,7 @@ package br.com.marcosceola.api.controller;
 
 import br.com.marcosceola.api.dto.paciente.DadosListagemPaciente;
 import br.com.marcosceola.api.dto.paciente.PacienteForm;
+import br.com.marcosceola.api.dto.paciente.PacienteUpdateForm;
 import br.com.marcosceola.api.model.paciente.Paciente;
 import br.com.marcosceola.api.service.PacienteService;
 import jakarta.validation.Valid;
@@ -33,5 +34,11 @@ public class PacienteController {
                 .map(DadosListagemPaciente::new);
 
         return ResponseEntity.ok(dadosPaciente);
+    }
+
+    @PutMapping
+    @Transactional
+    public void update(@Valid @RequestBody PacienteUpdateForm pacienteUpdateForm) {
+        pacienteService.update(pacienteUpdateForm);
     }
 }

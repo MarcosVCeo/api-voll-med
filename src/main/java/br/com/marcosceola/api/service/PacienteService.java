@@ -1,5 +1,7 @@
 package br.com.marcosceola.api.service;
 
+import br.com.marcosceola.api.dto.paciente.PacienteUpdateForm;
+import br.com.marcosceola.api.exception.ApiException;
 import br.com.marcosceola.api.model.paciente.Paciente;
 import br.com.marcosceola.api.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +21,16 @@ public class PacienteService {
 
     public Page<Paciente> listAll(Pageable paginacao) {
         return pacienteRepository.findAllByAtivoTrue(paginacao);
+    }
+
+    public Paciente find(Long id) {
+        return pacienteRepository
+                .findById(id)
+                .orElseThrow(() -> new ApiException(String.format("Não foi possível encontrar um paciente com o id: '%d'", id)));
+    }
+
+    public void update(PacienteUpdateForm pacienteUpdateForm) {
+        var paciente = find(pacienteUpdateForm.id());
+        paciente.atualizarInformacoes(pacienteUpdateForm);
     }
 }
