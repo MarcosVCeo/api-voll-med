@@ -15,8 +15,10 @@ public class MedicoService {
     @Autowired
     private MedicoRepository repository;
 
-    public void save(Medico medico) {
+    public Medico save(Medico medico) {
         repository.save(medico);
+
+        return medico;
     }
 
     public Page<Medico> listAll(Pageable paginacao) {
@@ -40,8 +42,10 @@ public class MedicoService {
         medico.desativar();
     }
 
-    public void update(MedicoUpdateForm medicoUpdateForm) {
+    public Medico update(MedicoUpdateForm medicoUpdateForm) {
         var medico = this.find(medicoUpdateForm.id());
         medico.atualizarInformacoes(medicoUpdateForm);
+
+        return medico;
     }
 }

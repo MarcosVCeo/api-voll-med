@@ -1,5 +1,6 @@
 package br.com.marcosceola.api.controller;
 
+import br.com.marcosceola.api.dto.medico.DadosDetalhamentoMedico;
 import br.com.marcosceola.api.dto.medico.DadosListagemMedico;
 import br.com.marcosceola.api.dto.medico.MedicoForm;
 import br.com.marcosceola.api.dto.medico.MedicoUpdateForm;
@@ -13,6 +14,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/medicos")
@@ -23,8 +25,14 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@Valid @RequestBody MedicoForm medicoForm) {
-        medicoService.save(new Medico(medicoForm));
+    public ResponseEntity cadastrar(@Valid @RequestBody MedicoForm medicoForm, UriComponentsBuilder uriBuilder) {
+        var medico = medicoService.save(new Medico(medicoForm));
+        var uri = uriBuilder
+                .path("/medicos/{id}")
+                .buildAndExpand(medico.getId())
+                .toUri();
+
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoMedico(medico));
     }
 
     @GetMapping
@@ -36,15 +44,26 @@ public class MedicoController {
         return ResponseEntity.ok(medicosForm);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoMedico> buscar(@PathVariable Long id) {
+        var medico = medicoService.findAtivo(id);
+
+        return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
+    }
+
     @DeleteMapping("/{id}")
     @Transactional
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity excluir(@PathVariable Long id) {
         medicoService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping
     @Transactional
-    public void update(@Valid @RequestBody MedicoUpdateForm medicoUpdateForm) {
-        medicoService.update(medicoUpdateForm);
+    public ResponseEntity atualizar(@Valid @RequestBody MedicoUpdateForm medicoUpdateForm) {
+        var medico = medicoService.update(medicoUpdateForm);
+
+        return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
     }
 }
