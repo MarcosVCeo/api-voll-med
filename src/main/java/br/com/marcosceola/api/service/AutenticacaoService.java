@@ -1,6 +1,5 @@
-package br.com.marcosceola.api.model.usuario;
+package br.com.marcosceola.api.service;
 
-import br.com.marcosceola.api.exception.ApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,12 +10,10 @@ import org.springframework.stereotype.Service;
 public class AutenticacaoService implements UserDetailsService {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return usuarioRepository
-                .findByLogin(username)
-                .orElseThrow(() -> new ApiException(String.format("Usuario %s não foi encontrado", username)));
+        return usuarioService.findByLogin(username);
     }
 }

@@ -26,7 +26,6 @@ public class TratadorErros {
         return ResponseEntity.badRequest().body(erros);
     }
 
-
     private record DadosErroValidacao(String campo, String mensagem) {
         public DadosErroValidacao(FieldError fieldError) {
             this(fieldError.getField(), fieldError.getDefaultMessage());
